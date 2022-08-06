@@ -1,8 +1,8 @@
 * Implement symforce tutorial in ROS. 
 ** TODO: 
     - When the graph optimizes it should publish the TFs for the poses!
-    - DONE - Load everything into git. 
-    - DONE - Need to make a launch file for the simple symforce example.
+    - DONE - Load everything into git
+    - DONE - Need to make a launch file for the simple symforce example
     
 ** Factor graph node:
     - The factor class should maintain a list of Factors which says which poses are linked together and by which
