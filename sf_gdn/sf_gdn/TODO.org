@@ -1,0 +1,56 @@
+* Implement symforce tutorial in ROS. 
+** TODO: 
+    - When the graph optimizes it should publish the TFs for the poses!
+    - Load everything into git. 
+    - DONE - Need to make a launch file for the simple symforce example.
+    
+** Factor graph node:
+    - The factor class should maintain a list of Factors which says which poses are linked together and by which
+      measures, and the Values contains the actual measurements and intial values. 
+    - The main factor graph class should tell the odometry publisher when to provide a measurement - either when
+      a bearing factor is received, or after a certain amount of time has passed (or right before an optimization
+      call? Not sure you can extrapolate like that, maybe test it) 
+    - The first time the factor class gets a bearing measurement it creates pose 0, then the next time one is
+      received it should get an odometry measure between the two. 
+
+   - [X] Implement the subscriber to the bearing message.
+     - It's set up and running to subscribe, just need to handle and do publisher
+    
+** Messages:
+*** DONE Make a message for odometry factors which will be used as a service
+CLOSED: [2022-08-02 Tue 19:26]
+    - The odometry measure is just a distance between the current pose and the last pose, the pose numbers
+      are internal to the factor graph class. This can be a simple float I think. It doesn't require an input
+
+*** DONE Make a message for bearing factors
+CLOSED: [2022-07-18 Mon 22:21]
+    - The message is a list of landmarks (the 2D positions of them) seen at the current pose, and the bearing
+      measurements (angles) from the pose to each of the landmarks. Also a list of landmark sequence is needed
+      to keep track of existing nodes. We'll be sending redundant landmark position information though but thats
+      ok. We could just keep track of them by position but that is a little messy (rounding errors, etc).  
+    - That would be an unbounded list of [[https://index.ros.org/r/common_interfaces/github-ros2-common_interfaces/][geometry_msgs/Points]] (ignore z) called landmarks and an unbounded list
+      the same size that contains a float for each landmark and an unboarded list of uint32 for landmark sequence.
+    - Would we want the message to just contain one landmark? I don't think so because we just want one pose per
+      position and the way above makes it clean. 
+    - However, ideally you'd want to know if the landmark you're sending is one that's already been seen right?
+      - Who should be responsible for taking care of keeping track of reviewed landmarks? The bearing node
+        or the factor graph node? I think the bearing node should. So maybe include a landmark sequence also
+        and the factor graph node can just check if the landmark exists before adding it to its internal list.  
+    - To get the msg to build I had to put more stuff in the cmakelists and package.xml. Also the msgs file is
+      touchy with capital letters. 
+
+** DONE make a publishers for each kind of factor
+CLOSED: [2022-08-02 Tue 19:26]
+  - Assuming that the main factor graph subscriber takes in all kinds of factors from different publishers
+    and determines when to optimize (for example by time) or can be asked to optimize from something external.
+     
+** DONE Odometry node 
+CLOSED: [2022-08-02 Tue 19:26]
+  - In the simple example each pose has a bearing and odometry associated with it...I think you need something
+    like an odometry measure between each pose to link them together somehow. So when you get a slower update
+    sensor you'd call on your odometry routine to provide a factor. So the odometry node should implement a
+    service and the graph class calls it as a client. In the real world it should the client would pass in a
+    time stamp and the odometry will keep a running tally until its service is called, then it can go back in
+    time and contruct an odometry measure from the last time it was called until the current time, send that
+    factor, and forget about those measurements.
+     

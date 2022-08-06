@@ -1,0 +1,6 @@
+<!--- simple_symforce_example.xml-->
+<launch>
+  <node pkg="sf_gdn" exec="bearing_pub"/>
+  <node pkg="sf_gdn" exec="odometry_ser"/>
+  <node pkg="sf_gdn" exec="factor_graph"/>
+</launch>
