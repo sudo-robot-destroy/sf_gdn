@@ -27,13 +27,14 @@ class BearingPublisher(Node):
         ).tolist()
 
     def timer_callback(self):
-        msg = LandmarkBearings()
-        msg.landmark_seq = self.landmark_seq
-        msg.landmarks = self.landmarks
-        msg.angles = self.angles[self.i]
-        self.publisher_.publish(msg)
-        self.get_logger().info("Publishing bearing")
-        self.i = self.i + 1
+        if self.i < len(self.landmark_seq):
+            msg = LandmarkBearings()
+            msg.landmark_seq = self.landmark_seq
+            msg.landmarks = self.landmarks
+            msg.angles = self.angles[self.i]
+            self.publisher_.publish(msg)
+            self.get_logger().info("Publishing bearing")
+            self.i = self.i + 1
 
 
 def main(args=None):

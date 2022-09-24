@@ -1,6 +1,6 @@
 * Implement symforce tutorial in ROS. 
 ** TODO: 
-    - When the graph optimizes it should publish the TFs for the poses!
+    - DONE - When the graph optimizes it should publish the TFs for the poses!
     - DONE - Load everything into git
     - DONE - Need to make a launch file for the simple symforce example
     

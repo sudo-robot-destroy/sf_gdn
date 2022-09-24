@@ -6,6 +6,8 @@ from sf_gdn_interfaces.srv import OdometryFactor
 from symforce.opt.factor import Factor
 from symforce.values import Values
 from symforce.opt.optimizer import Optimizer
+from tf2_ros import TransformBroadcaster
+from geometry_msgs.msg import TransformStamped
 
 
 def bearing_residual(
@@ -62,8 +64,11 @@ class FactorSubscriber(Node):
         while not self.odometry_client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
 
+        # Output optimized poses on the ROS TF system using this broadcaster
+        self.tf_broadcaster = TransformBroadcaster(self)
+
         # How to trigger optimizations
-        self.optimization_trigger = 3
+        self.optimization_trigger = 3  # TODO: this is only for development
         self.optimize_now = False
 
         # Some items to keep track of program flow and collect information
@@ -191,9 +196,29 @@ class FactorSubscriber(Node):
         # Solve and return the result
         result = optimizer.optimize(initial_values)
         for i, pose in enumerate(result.optimized_values["poses"]):
+            # Plot it out
+            self.tf_broadcaster.sendTransform(self.pose2_tf(pose, i))
+            # Print it out
             self.get_logger().info(
                 f"Pose {i}: t = {pose.position()}, "
                 f"heading = {pose.rotation().to_tangent()[0]}")
+
+    def pose2_tf(self, pose2: sf.Pose2, pose_id: int) -> TransformStamped:
+        """Convert sf.pose2 to a tf.transformstamped"""
+        # TODO: Make sure this is working and can be seen in RVIZ
+        tf = TransformStamped()
+        tf.header.stamp = self.get_clock().now().to_msg()
+        tf.header.frame_id = 'map'
+        tf.child_frame_id = str(pose_id)
+        tf.transform.translation.x = pose2.position()[0]
+        tf.transform.translation.y = pose2.position()[1]
+        tf.transform.translation.z = 0.0
+        tf.transform.rotation.x = 0.0
+        tf.transform.rotation.y = 0.0
+        # TODO: I don't think this is correct, maybe use to_tangent()?
+        tf.transform.rotation.z = pose2.rotation().to_storage()[0]
+        tf.transform.rotation.w = pose2.rotation().to_storage()[1]
+        return tf
 
     def spin(self):
         """Since we do some nest threading we need to have a custom spin
