@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from symforce import symbolic as sf
-from sf_gdn_interfaces.msg import LandmarkBearings
+from sf_gdn_interfaces.msg import LandmarkBearings, LandmarkMatch3D
 from sf_gdn_interfaces.srv import OdometryFactor
 from symforce.opt.factor import Factor
 from symforce.values import Values
@@ -13,7 +13,13 @@ from geometry_msgs.msg import TransformStamped
 def bearing_residual(
     pose: sf.Pose2, landmark: sf.V2, angle: sf.Scalar, epsilon: sf.Scalar
 ) -> sf.V1:
-    """Residual from relative bearing measurement of 2D pose to a landmark."""
+    """Residual from relative bearing measurement of 2D pose to a landmark.
+    Args:
+        pose: 2D pose of the robot in world frame (being optimized
+        landmark: 2D position of landmark in world frame (known)
+        angle: Measured bearing angle in robot frame to the landmark
+        epsilon: A small number that helps prevent singularities in atan2
+    """
     t_body = pose.inverse() * landmark
     predicted_angle = sf.atan2(t_body[1], t_body[0], epsilon=epsilon)
     return sf.V1(sf.wrap_angle(predicted_angle - angle))
@@ -24,6 +30,21 @@ def odometry_residual(
 ) -> sf.V1:
     """Residual from the scalar distance between two poses."""
     return sf.V1((pose_b.t - pose_a.t).norm(epsilon=epsilon) - dist)
+
+
+def matching_residual(
+    world_T_body: sf.Pose3, world_t_landmark: sf.V3, body_t_landmark: sf.V3,
+        sigma: sf.Scalar) -> sf.V3:
+    """
+    Residual from a relative translation mesurement of a 3D pose to a landmark.
+    Args:
+        world_T_body: 3D pose of the robot in the world frame
+        world_t_landmark: World location of the landmark
+        body_t_landmark: Measured body-frame location of the landmark
+        sigma: Isotropic standard deviation of the measurement [m]
+    """
+    body_t_landmark_predicted = world_T_body.inverse() * world_t_landmark
+    return (body_t_landmark_predicted - body_t_landmark) / sigma
 
 
 class FactorSubscriber(Node):
@@ -84,6 +105,14 @@ class FactorSubscriber(Node):
         self.landmarks = []  # From bearing factors
         self.angles = []  # From bearing factors
         self.distances = []  # From odometry factors
+
+    def match_factor_callback(self, msg: LandmarkMatch3D):
+        """Process incoming matching factors.
+
+        The LandmarkMatch3D msgs has landmarks and the translations to them
+        Receiving a matching factor creates a new pose in the factor graph.
+        """
+        pass  # TODO: fill this out.
 
     def bearing_factor_callback(self, msg: LandmarkBearings):
         """Process incoming bearing factors.
@@ -205,7 +234,6 @@ class FactorSubscriber(Node):
 
     def pose2_tf(self, pose2: sf.Pose2, pose_id: int) -> TransformStamped:
         """Convert sf.pose2 to a tf.transformstamped"""
-        # TODO: Make sure this is working and can be seen in RVIZ
         tf = TransformStamped()
         tf.header.stamp = self.get_clock().now().to_msg()
         tf.header.frame_id = 'map'
