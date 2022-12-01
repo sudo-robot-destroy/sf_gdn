@@ -1,3 +1,6 @@
+* Notes: 
+    - This looks like a nice dataset: https://projects.asl.ethz.ch/datasets/doku.php?id=fsr2015
+
 * Implement symforce tutorial in ROS. 
 ** TODO: 
     - DONE - When the graph optimizes it should publish the TFs for the poses!
