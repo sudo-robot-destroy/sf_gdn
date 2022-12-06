@@ -20,5 +20,5 @@ $\ _Bt_L - \text{Position measurement of landmark from current pose} $
 $\ \sigma - \text{Standard deviation of measurement} $  
 
 $\ _B\hat{t}_L = (_WT_B)^{-1}\times _Wt_L $  
-$\ error = \cfrac{_B\hat{t}_L - _Bt_L}{\sigma} $  
+$\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $  
 Note - The bigger the stddev, the less effect on the optimization
