@@ -2,7 +2,8 @@
 
 ![transforms](pngs/3D_odometry_residual.png)  
 $\ residual(_WT_A,\ _WT_B,\ _AT_B,\ \sigma)  $  
-$\ _WT_A $ - Previous pose, assume it's correct  
+$\ _WT_A $  
+- Previous pose, assume it's correct  
 $\ _WT_B $ - The transform being optimized / calculated  
 $\ _AT_B $ - From measurement  
 $\ \sigma $ - TODO: MAGICALLY HANDLED WITH TANGENT SPACE PERTUBATIONS  
