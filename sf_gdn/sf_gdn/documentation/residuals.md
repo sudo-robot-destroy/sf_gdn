@@ -8,7 +8,7 @@ $\ _AT_B - \text{From measurement} $
 $\ \sigma - \text{TODO: MAGICALLY HANDLED WITH TANGENT SPACE PERTUBATIONS} $  
 
 $\ _A\hat{T}_B = (_WT_A)^{-1}\times _WT_B  $  
-$\ \text{tangent\_error} = _A\hat{T}_B.\text{local\_coordinates}(_AT_B) $
+$\ \text{tangent\textunderscore error} = _A\hat{T}_B.\text{local\textunderscore coordinates}(_AT_B) $
 
 <ins>Matching residual (2D) </ins>  
 
