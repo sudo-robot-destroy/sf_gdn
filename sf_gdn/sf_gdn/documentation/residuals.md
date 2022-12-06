@@ -14,10 +14,10 @@ $\ tangent\_error = _A\hat{T}_B.local\_coordinates(_AT_B) $
 
 ![transforms](pngs/matching_residual.png)  
 $\ residual(_Wt_L,\ _WT_B,\ _Bt_L,\ \sigma) $  
-$\ _Wt_L $ - Known global position of landmark  
-$\ _WT_B $ - The transform being optimized / calculated  
-$\ _Bt_L $ - From measurement of landmark from current pose   
-$\ \sigma $ - Standard deviation of measurement  
+$\ _Wt_L - Known\ global\ position\ of\ landmark $  
+$\ _WT_B - The\ transform\ being\ optimized\ /\ calculated $  
+$\ _Bt_L - From\ measurement\ of\ landmark\ from\ current\ pose $  
+$\ \sigma - Standard\ deviation\ of\ measurement $  
 
 $\ _B\hat{t}_L = (_WT_B)^{-1}\times _Wt_L $  
 $\ error = \frac{_B\hat{t}_L - _Bt_L}{\sigma} $  
