@@ -1,4 +1,4 @@
-<u>3D odometry residual</u>
+<ins>3D odometry residual</ins>
 
 ![transforms](pngs/3D_odometry_residual.png)  
 $\ residual(_WT_A,\ _WT_B,\ _AT_B,\ \sigma)  $  
@@ -10,7 +10,7 @@ $\ \sigma $ - TODO: MAGICALLY HANDLED WITH TANGENT SPACE PERTUBATIONS
 $\ _A\hat{T}_B = (_WT_A)^{-1}\times _WT_B  $  
 $\ tangent\_error = _A\hat{T}_B.local\_coordinates(_AT_B) $
 
-<u>Matching residual (2D) </u>  
+<ins>Matching residual (2D) </ins>  
 
 ![transforms](pngs/matching_residual.png)  
 $\ residual(_Wt_L,\ _WT_B,\ _Bt_L,\ \sigma) $  
