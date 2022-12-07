@@ -5,7 +5,7 @@
 <ins>2D odometry residual</ins>  
 
 ![transforms](pngs/2D_odometry_residual.png)  
-$\ residual(_WT_A,\ _WT_B,\ _AT_B,\ \sigma) $  
+$\ residual(_WT_A,\ _WT_B,\ _AT_B) $  
 
 $\ _WT_A - \text{Previous pose, assume it's correct} $  
 $\ _WT_B - \textup{The transform being optimized / calculated} $  
@@ -21,11 +21,11 @@ $\ residual(_WT_A,\ _WT_B,\ _AT_B,\ \sigma)  $
 $\ _WT_A - \text{Previous pose, assume it's correct} $  
 $\ _WT_B - \textup{The transform being optimized / calculated} $  
 $\ _AT_B - \text{Odometry measurement} $  
-$\ \sigma - \text{TODO: MAGICALLY HANDLED WITH TANGENT SPACE PERTUBATIONS} $  
+$\ \sigma - \text{Diagonal standard deviation of the tangent-space error} $ 
 
 $\ _A\hat{T}_B = (_WT_A)^{-1}\times _WT_B  $  
 $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $
-$\ \text{Note: localCoordinates is used to compute the tangent space perturbation (i.e., rotation) needed to obtain the given transform} $
+$\ \text{Note: localCoordinates is used to compute the tangent space perturbation (i.e., rotation) needed to go from this transform to the given transform} $
 
 ------
 <ins>2D Matching residual </ins>  
