@@ -46,7 +46,7 @@ $\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $
 Note - The bigger the stddev, the less effect on the optimization  
 
 -----  
-### <ins>2D Bearing residual </ins>
+### <ins>2D Bearing residual</ins>
 
 ![transforms](pngs/2D_bearing_residual.png)  
 $\ residual(_WT_B,\ _Wt_L,\ bearingAngle) $  
