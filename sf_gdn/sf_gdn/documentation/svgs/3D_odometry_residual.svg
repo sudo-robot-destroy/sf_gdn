@@ -24,17 +24,23 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="5.1412787"
-     inkscape:cx="239.04559"
-     inkscape:cy="540.81877"
-     inkscape:window-width="1846"
-     inkscape:window-height="1016"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
+     inkscape:zoom="3.1854337"
+     inkscape:cx="129.33875"
+     inkscape:cy="537.76038"
+     inkscape:window-width="1452"
+     inkscape:window-height="991"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
+    <rect
+       x="375.26533"
+       y="620.42916"
+       width="202.41553"
+       height="136.33961"
+       id="rect1860" />
     <rect
        x="219.31227"
        y="580.17475"
@@ -760,10 +766,17 @@
        width="33.902367"
        height="26.046942"
        x="10.953353"
-       y="119.6352"
-       inkscape:export-filename="../pngs/matching_residual.png"
+       y="-145.68214"
+       inkscape:export-filename="../pngs/2D_matching_residual.png"
        inkscape:export-xdpi="187.30255"
-       inkscape:export-ydpi="187.30255" />
+       inkscape:export-ydpi="187.30255"
+       transform="scale(1,-1)" />
+    <circle
+       style="fill:#ff6700;fill-opacity:1;stroke:#000000;stroke-width:0.177"
+       id="path945-3"
+       r="0.72521061"
+       cy="126.46395"
+       cx="37.626953" />
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke-width:0.264583"
@@ -793,20 +806,6 @@
        d="M 15.962244,126.61637 22.6275,141.12918"
        id="path1404-3-2"
        sodipodi:nodetypes="cc" />
-    <g
-       id="g2865-0"
-       transform="translate(-61.088985,28.939155)">
-      <path
-         style="fill:none;stroke:#ff0700;stroke-width:0.344487;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart-2-6)"
-         d="m 98.325229,97.632152 h 5.150451"
-         id="path1404-9-2"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#00ff0d;stroke-width:0.344487;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart-2-4-9)"
-         d="M 98.477141,97.681705 V 92.531253"
-         id="path1404-9-6-3"
-         sodipodi:nodetypes="cc" />
-    </g>
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke-width:0.264583"
@@ -1145,9 +1144,9 @@
          x="65.937019"
          y="134.86673"><tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan7321">W</tspan>T<tspan
+   id="tspan1852">W</tspan>t<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan7319">L</tspan></tspan></text>
+   id="tspan1850">L</tspan></tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.477;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleStart-3-2)"
        d="M 57.656114,136.80257 H 77.298838"
@@ -1162,20 +1161,6 @@
        d="m 57.854683,136.84942 6.665256,14.51281"
        id="path1404-3-2-3"
        sodipodi:nodetypes="cc" />
-    <g
-       id="g2865-0-0"
-       transform="translate(-19.196546,39.172204)">
-      <path
-         style="fill:none;stroke:#ff0700;stroke-width:0.344487;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart-2-6-4)"
-         d="m 98.325229,97.632152 h 5.150451"
-         id="path1404-9-2-7"
-         sodipodi:nodetypes="cc" />
-      <path
-         style="fill:none;stroke:#00ff0d;stroke-width:0.344487;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleStart-2-4-9-6)"
-         d="M 98.477141,97.681705 V 92.531253"
-         id="path1404-9-6-3-8"
-         sodipodi:nodetypes="cc" />
-    </g>
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke-width:0.264583"
@@ -1269,9 +1254,9 @@
          x="73.090004"
          y="147.30351"><tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan7317">B</tspan>T<tspan
+   id="tspan1856">B</tspan>t<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan7315">L</tspan></tspan></text>
+   id="tspan1854">L</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-size:3.175px;fill:#000000;stroke-width:0.264583"
@@ -1288,5 +1273,16 @@
        d="m 66.394259,154.83515 c 0,0 1.433329,-0.32475 1.764065,-1.37813 0.330736,-1.05338 -0.530417,-2.38744 -0.530417,-2.38744"
        id="path2350"
        sodipodi:nodetypes="czc" />
+    <circle
+       style="fill:#ff6700;fill-opacity:1;stroke:#000000;stroke-width:0.177"
+       id="path945"
+       r="0.72521061"
+       cy="136.4463"
+       cx="79.521263" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1858"
+       style="fill:#ff6700;stroke-width:0.66897638;stroke:#000000;-inkscape-font-specification:sans-serif;font-family:sans-serif;fill-opacity:1;white-space:pre;shape-inside:url(#rect1860)" />
   </g>
 </svg>

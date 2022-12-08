@@ -3,6 +3,8 @@
 [2D matching residual](#2D-matching-residual)  
 [2D bearing residual](#2D-bearing-residual)  
 
+
+<ins>Nomenclature</ins>  
 **B** is current body pose  
 **A** is past pose  
 **W** is world frame  
@@ -59,3 +61,10 @@ $\ bearingAngle - \text{Bearing angle measurement of landmark from robot} $
 $\ _BT_L = (_WT_B)^{-1}\times _WT_L $  
 $\ \theta = atan2(_BT_L[1],\ _BT_L[0]) $  
 $\ error = \theta - bearingAngle $
+
+Note: Symforce has some built in factors [here](https://github.com/symforce-org/symforce/tree/main/symforce/codegen)  
+
+Here are some for visual SLAM: 
+* Inverse range landmark prior residual
+* Inverse range landmark reprojection error residual
+* Inverse range landmark ray reprojection error residual
