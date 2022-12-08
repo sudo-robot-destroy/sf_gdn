@@ -1,5 +1,7 @@
 [2D odometry residual](#2D-odometry-residual)  
-[2D Bearing residual](#2D-bearing-residual)  
+[3D odometry residual](#3D-odometry-residual)  
+[2D matching residual](#2D-matching-residual)  
+[2D bearing residual](#2D-bearing-residual)  
 
 **B** is current body pose  
 **A** is past pose  
@@ -31,7 +33,7 @@ $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $
 $\ \text{Note: localCoordinates is used to compute the tangent space perturbation (i.e., rotation) needed to go from this transform to the given transform} $
 
 ------
-### <ins>2D Matching residual </ins>  
+### <ins>2D matching residual</ins>  
 
 ![transforms](pngs/2D_matching_residual.png)  
 $\ residual(_Wt_L,\ _WT_B,\ _Bt_L,\ \sigma) $  
@@ -46,7 +48,7 @@ $\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $
 Note - The bigger the stddev, the less effect on the optimization  
 
 -----  
-### <ins>2D Bearing residual</ins>
+### <ins>2D bearing residual</ins>
 
 ![transforms](pngs/2D_bearing_residual.png)  
 $\ residual(_WT_B,\ _Wt_L,\ bearingAngle) $  
