@@ -1,8 +1,11 @@
+[2D odometry residual](#2D-odometry-residual)  
+[2D Bearing residual](#2D-bearing-residual)  
+
 **B** is current body pose  
 **A** is past pose  
 **W** is world frame  
 
-<ins>2D odometry residual</ins>  
+### <ins>2D odometry residual</ins>  
 
 ![transforms](pngs/2D_odometry_residual.png)  
 $\ residual(_WT_A,\ _WT_B,\ _AT_B) $  
@@ -14,7 +17,7 @@ $\ _AT_B - \text{Odometry measurement} $
 $\ error = ||_WT_B - _WT_A|| - _AT_B $  
 
 ------
-<ins>3D odometry residual</ins>
+### <ins>3D odometry residual</ins>
 
 ![transforms](pngs/3D_odometry_residual.png)  
 $\ residual(_WT_A,\ _WT_B,\ _AT_B,\ \sigma)  $  
@@ -28,9 +31,9 @@ $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $
 $\ \text{Note: localCoordinates is used to compute the tangent space perturbation (i.e., rotation) needed to go from this transform to the given transform} $
 
 ------
-<ins>2D Matching residual </ins>  
+### <ins>2D Matching residual </ins>  
 
-![transforms](pngs/matching_residual.png)  
+![transforms](pngs/2D_matching_residual.png)  
 $\ residual(_Wt_L,\ _WT_B,\ _Bt_L,\ \sigma) $  
 $\ _Wt_L - \text{Known global position of landmark} $  
 $\ _WT_B - \text{The transform being optimized / calculated} $  
@@ -43,12 +46,12 @@ $\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $
 Note - The bigger the stddev, the less effect on the optimization  
 
 -----  
-<ins>2D Bearing residual </ins>
+### <ins>2D Bearing residual </ins>
 
 ![transforms](pngs/2D_bearing_residual.png)  
-$\ residual(_WT_B,\ _WT_L,\ bearingAngle) $  
+$\ residual(_WT_B,\ _Wt_L,\ bearingAngle) $  
 $\ _WT_B - \text{The transform being optimized / calculated} $  
-$\ _WT_L - \text{Known global position of landmark} $  
+$\ _Wt_L - \text{Known global position of landmark} $  
 $\ bearingAngle - \text{Bearing angle measurement of landmark from robot} $  
 
 $\ _BT_L = (_WT_B)^{-1}\times _WT_L $  
