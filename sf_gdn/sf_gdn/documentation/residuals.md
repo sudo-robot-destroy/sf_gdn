@@ -1,6 +1,7 @@
 [2D odometry residual](#2D-odometry-residual)  
 [3D odometry residual](#3D-odometry-residual)  
 [2D matching residual](#2D-matching-residual)  
+[3D matching residual](#3d-matching-residual)  
 [2D bearing residual](#2D-bearing-residual)  
 
 
@@ -32,7 +33,10 @@ $\ \sigma - \text{Diagonal standard deviation of the tangent-space error} $
 
 $\ _A\hat{T}_B = (_WT_A)^{-1}\cdot _WT_B  $  
 $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $  
-$\ \text{Note: localCoordinates is used to compute the vector pointing from }_A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B.  $  
+$\ residual = \sigma^{-1}\cdot tangentError $  
+
+$\ \text{Note: localCoordinates computes the vector pointing from }_A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B \text{ for the rotation.} $  
+$\ \text{For the translation it is just a simple vector subtraction that outputs the vector from }_A\hat{T}_B \text{ to } _AT_B \text{ in Cartesian space}.  $  
 
 ------
 ### <ins>2D matching residual</ins>  
@@ -48,6 +52,10 @@ $\ _B\hat{t}_L = (_WT_B)^{-1}\cdot _Wt_L $
 $\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $  
 
 Note - The bigger the stddev, the less effect on the optimization  
+
+-----
+### <ins>3D matching residual</ins>  
+The picture and equations for 3D are the exact same as the 2D case, the only difference is it is 3D instead of 2D.  
 
 -----  
 ### <ins>2D bearing residual</ins>
