@@ -31,8 +31,8 @@ $\ _AT_B - \text{Odometry measurement} $
 $\ \sigma - \text{Diagonal standard deviation of the tangent-space error} $ 
 
 $\ _A\hat{T}_B = (_WT_A)^{-1}\times _WT_B  $  
-$\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $
-$\ \text{Note: localCoordinates is used to compute the tangent space perturbation (i.e., rotation) needed to go from this transform to the given transform} $
+$\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $  
+$\ \text{Note: localCoordinates is used to compute the vector pointing from }_A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B.  $  
 
 ------
 ### <ins>2D matching residual</ins>  
