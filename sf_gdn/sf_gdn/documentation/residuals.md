@@ -30,7 +30,7 @@ $\ _WT_B - \textup{The transform being optimized / calculated} $
 $\ _AT_B - \text{Odometry measurement} $  
 $\ \sigma - \text{Diagonal standard deviation of the tangent-space error} $ 
 
-$\ _A\hat{T}_B = (_WT_A)^{-1}\times _WT_B  $  
+$\ _A\hat{T}_B = (_WT_A)^{-1}\cdot _WT_B  $  
 $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $  
 $\ \text{Note: localCoordinates is used to compute the vector pointing from }_A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B.  $  
 
@@ -44,7 +44,7 @@ $\ _WT_B - \text{The transform being optimized / calculated} $
 $\ _Bt_L - \text{Position measurement of landmark from current pose} $  
 $\ \sigma - \text{Standard deviation of measurement} $  
 
-$\ _B\hat{t}_L = (_WT_B)^{-1}\times _Wt_L $  
+$\ _B\hat{t}_L = (_WT_B)^{-1}\cdot _Wt_L $  
 $\ error = \dfrac{_B\hat{t}_L - _Bt_L}{\sigma} $  
 
 Note - The bigger the stddev, the less effect on the optimization  
@@ -58,7 +58,7 @@ $\ _WT_B - \text{The transform being optimized / calculated} $
 $\ _Wt_L - \text{Known global position of landmark} $  
 $\ bearingAngle - \text{Bearing angle measurement of landmark from robot} $  
 
-$\ _BT_L = (_WT_B)^{-1}\times _WT_L $  
+$\ _BT_L = (_WT_B)^{-1}\cdot _WT_L $  
 $\ \theta = atan2(_BT_L[1],\ _BT_L[0]) $  
 $\ error = \theta - bearingAngle $
 
