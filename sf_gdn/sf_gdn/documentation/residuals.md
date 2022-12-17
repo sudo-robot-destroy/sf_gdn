@@ -8,7 +8,14 @@
 <ins>Nomenclature</ins>  
 **B** is current body pose  
 **A** is past pose  
-**W** is world frame  
+**W** is world frame   
+**L** is a landmark
+
+The following are residuals for multiple different types of sensors. There is a
+pattern with the way they're constructed. The optimization problem is to guess 
+/ calculate the tranformation from the world frame to the body frame. To do 
+this, the measurement vector is recreated using the optimization guess and the 
+previous pose or the position of a landmark. 
 
 ### <ins>2D odometry residual</ins>  
 
@@ -19,7 +26,8 @@ $\ _WT_A - \text{Previous pose, assume it's correct} $
 $\ _WT_B - \textup{The transform being optimized / calculated} $  
 $\ _AT_B - \text{Odometry measurement} $  
 
-$\ error = ||_WT_B - _WT_A|| - _AT_B $  
+$\ _A\hat{T}_B = ||_WT_B - _WT_A|| $  
+$\ error = _A\hat{T}_B - _AT_B $  
 
 ------
 ### <ins>3D odometry residual</ins>
@@ -35,8 +43,10 @@ $\ _A\hat{T}_B = (_WT_A)^{-1}\cdot _WT_B  $
 $\ tangentError = _A\hat{T}_B.localCoordinates(_AT_B) $  
 $\ residual = \sigma^{-1}\cdot tangentError $  
 
-$\ \text{Note: localCoordinates computes the vector pointing from }_A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B \text{ for the rotation.} $  
-$\ \text{For the translation it is just a simple vector subtraction that outputs the vector from }_A\hat{T}_B \text{ to } _AT_B \text{ in Cartesian space}.  $  
+$\ \text{Note: localCoordinates computes the vector pointing from } $  
+$\ _A\hat{T}_B \text{ to } _AT_B \text{ in the tangent space around }_A\hat{T}_B \text{ for the rotation.} $  
+$\ \text{For the translation it is just a simple vector subtraction that} $  
+$\ \text{outputs the vector from }_A\hat{T}_B \text{ to } _AT_B \text{ in Cartesian space}.  $  
 
 ------
 ### <ins>2D matching residual</ins>  
@@ -66,8 +76,8 @@ $\ _WT_B - \text{The transform being optimized / calculated} $
 $\ _Wt_L - \text{Known global position of landmark} $  
 $\ bearingAngle - \text{Bearing angle measurement of landmark from robot} $  
 
-$\ _BT_L = (_WT_B)^{-1}\cdot _WT_L $  
-$\ \theta = atan2(_BT_L[1],\ _BT_L[0]) $  
+$\ _Bt_L = (_WT_B)^{-1}\cdot _Wt_L $  
+$\ \theta = atan2(_Bt_L[1],\ _Bt_L[0]) $  
 $\ error = \theta - bearingAngle $
 
 Note: Symforce has some built in factors [here](https://github.com/symforce-org/symforce/tree/main/symforce/codegen)  
