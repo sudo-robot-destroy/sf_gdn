@@ -1,6 +1,15 @@
+<<<<<<< HEAD:sf_gdn/sf_gdn/documentation/TODO.org
+* Figure out how to render satellite imagery
+   - SRI mentions they render 2D imagery from a 3D terrain model in Precise vision-aided navigation.
+   - Need to figure out where to get good 2D imagery and terrain model and how to combine the two and render it
+     I'm thinking RVIZ can be used for rendering but I need the data to try it. RVIZ needs collada probably. 
+   - QGis keeps showing up in searches about how to do this. 
+     
+=======
 * Notes: 
     - This looks like a nice dataset: https://projects.asl.ethz.ch/datasets/doku.php?id=fsr2015
 
+>>>>>>> origin/master:sf_gdn/sf_gdn/TODO.org
 * Implement symforce tutorial in ROS. 
 ** TODO: 
     - DONE - When the graph optimizes it should publish the TFs for the poses!
