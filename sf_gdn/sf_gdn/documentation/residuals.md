@@ -15,7 +15,8 @@ The following are residuals for multiple different types of sensors. There is a
 pattern with the way they're constructed. The optimization problem is to guess 
 / calculate the tranformation from the world frame to the body frame. To do 
 this, the measurement vector is recreated using the optimization guess and the 
-previous pose or the position of a landmark. 
+previous pose or the position of a landmark and that "prediction" is compared 
+to the measurment. The difference of the two is a weight in the optimization.  
 
 ### <ins>2D odometry residual</ins>  
 
